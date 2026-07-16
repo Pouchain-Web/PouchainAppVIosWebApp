@@ -116,6 +116,11 @@
             const isStandalone = window.navigator.standalone === true || window.matchMedia('(display-mode: standalone)').matches;
 
             if (isIOS && !isStandalone) {
+                // Désactiver tous les champs de saisie pour empêcher l'ouverture du clavier iOS
+                document.querySelectorAll('input').forEach(input => {
+                    input.disabled = true;
+                });
+
                 const guide = document.createElement('div');
                 guide.id = 'ios-install-guide';
                 guide.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(28,28,30,0.92);backdrop-filter:blur(30px);-webkit-backdrop-filter:blur(30px);color:white;z-index:999999;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:30px;box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,sans-serif;animation:fadeIn 0.4s ease-out;';
